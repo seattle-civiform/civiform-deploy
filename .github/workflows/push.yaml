@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  push:
+    branches: main
+
+# Two probers running at once can break each other.
+concurrency:
+  group: stagingenvironment
+  cancel-in-progress: true
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-18.04 # for older version of awscli.
+    steps:
+      - id: file_changes
+        uses: trilom/file-changes-action@v1.2.4
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run deploy-staging.
+        if: "contains(toJSON(steps.file_changes.outputs.files), 'cloudformation/')"
+        id: deploy_staging
+        env:
+          DOCKER_BUILDKIT: 1
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+        run: bin/deploy-staging
