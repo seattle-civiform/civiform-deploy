@@ -14,17 +14,17 @@ fi
 # log the docker CLI into the Docker Hub container registry
 echo $DOCKER_HUB_ACCESS_TOKEN | docker login --username $DOCKER_HUB_USERNAME --password-stdin docker.io
 
-docker pull docker.io/civiform/civiform:latest
+docker pull docker.io/civiform/civiform:prod
 
 # log into AWS ECR
 aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/t1q6b4h2
 
 # push the Docker Hub image to AWS ECR
-docker tag civiform/civiform:latest public.ecr.aws/t1q6b4h2/universal-application-tool:latest
-docker push public.ecr.aws/t1q6b4h2/universal-application-tool:latest
+docker tag civiform/civiform:prod public.ecr.aws/t1q6b4h2/universal-application-tool:prod
+docker push public.ecr.aws/t1q6b4h2/universal-application-tool:prod
 
-ECSSERVICE=$(aws cloudformation describe-stacks --region ${REGION} --stack-name $STACK | jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSService") | .OutputValue')
-ECSCLUSTER=$(aws cloudformation describe-stacks --region ${REGION} --stack-name $STACK | jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSCluster") | .OutputValue')
+ECSSERVICE=$(aws cloudformation describe-stacks --region ${REGION} --stack-name civiform | jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSService") | .OutputValue')
+ECSCLUSTER=$(aws cloudformation describe-stacks --region ${REGION} --stack-name civiform | jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSCluster") | .OutputValue')
 
 aws ecs update-service --region=${REGION} --cluster "$ECSCLUSTER" --service "$ECSSERVICE" --force-new-deployment
 
