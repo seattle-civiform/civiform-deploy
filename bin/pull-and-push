@@ -1,0 +1,39 @@
+#! /bin/bash
+
+# DOC: Pull prod image from docker hub and upload it to ECR
+
+set -e
+set +x
+export AWS_DEFAULT_REGION=us-west-2
+REGION=us-west-2
+STACK=civiform-staging
+if [ ! -z "$1" ]; then
+  STACK="$1"
+fi
+
+# log the docker CLI into the Docker Hub container registry
+echo $DOCKER_HUB_ACCESS_TOKEN | docker login --username $DOCKER_HUB_USERNAME --password-stdin docker.io
+
+docker pull docker.io/civiform/civiform:latest
+
+# log into AWS ECR
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/t1q6b4h2
+
+# push the Docker Hub image to AWS ECR
+docker tag civiform/civiform:latest public.ecr.aws/t1q6b4h2/universal-application-tool:latest
+docker push public.ecr.aws/t1q6b4h2/universal-application-tool:latest
+
+ECSSERVICE=$(aws cloudformation describe-stacks --region ${REGION} --stack-name $STACK | jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSService") | .OutputValue')
+ECSCLUSTER=$(aws cloudformation describe-stacks --region ${REGION} --stack-name $STACK | jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSCluster") | .OutputValue')
+
+aws ecs update-service --region=${REGION} --cluster "$ECSCLUSTER" --service "$ECSSERVICE" --force-new-deployment
+
+deadline=$(($(date +%s) + 900))
+until aws ecs wait services-stable --region=${REGION} --cluster "$ECSCLUSTER" --services "$ECSSERVICE"; do
+    if (( $(date +%s) > $deadline )); then
+        echo "deadline exceeded waiting for service update to stabilize"
+        exit 1
+    fi
+done
+
+popd
