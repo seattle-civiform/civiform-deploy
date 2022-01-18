@@ -4,12 +4,6 @@
 
 set -e
 set +x
-export AWS_DEFAULT_REGION=us-west-2
-REGION=us-west-2
-STACK=civiform-staging
-if [ ! -z "$1" ]; then
-  STACK="$1"
-fi
 
 docker pull docker.io/civiform/civiform:latest
 
