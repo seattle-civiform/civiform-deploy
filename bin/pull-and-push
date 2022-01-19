@@ -1,0 +1,17 @@
+#! /bin/bash
+
+# DOC: Pull prod image from docker hub and upload it to ECR
+
+set -e
+set +x
+
+docker pull docker.io/civiform/civiform:latest
+
+# log into AWS ECR
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/t1q6b4h2
+
+# push the Docker Hub image to AWS ECR
+docker tag civiform/civiform:latest public.ecr.aws/t1q6b4h2/universal-application-tool:latest
+docker push public.ecr.aws/t1q6b4h2/universal-application-tool:latest
+
+popd
