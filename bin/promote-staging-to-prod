@@ -1,27 +1,17 @@
 #! /usr/bin/env bash
 
-# DOC: Deploy an image to production along with cloudformation stack changes.
-# DOC: Deploys the current staging image if none is passed in.
+# DOC: Deploy the current staging image to production along with cloudformation stack changes.
 
 set -e
 set +x
 
-export AWS_DEFAULT_REGION=us-west-2
-REGION=us-west-2
-
-image_name=public.ecr.aws/t1q6b4h2/universal-application-tool:latest
-
-if [[ -n "${1}" ]]; then
-  image_name="${1}"
-fi
-
 aws ecr-public get-login-password --region us-east-1 |
   docker login --username AWS --password-stdin public.ecr.aws/t1q6b4h2
 
-docker pull "${image_name}"
+docker pull public.ecr.aws/t1q6b4h2/universal-application-tool:latest
 
 docker tag \
-  "${image_name}" \
+  public.ecr.aws/t1q6b4h2/universal-application-tool:latest \
   public.ecr.aws/t1q6b4h2/universal-application-tool:prod
 
 docker push public.ecr.aws/t1q6b4h2/universal-application-tool:prod
