@@ -13,7 +13,7 @@ set +x
 export AWS_DEFAULT_REGION=us-west-2
 REGION=us-west-2
 
-environment_name="prod"
+environment_name="staging"
 image_name="public.ecr.aws/t1q6b4h2/universal-application-tool:latest"
 
 if [[ -n "${1}" ]]; then
