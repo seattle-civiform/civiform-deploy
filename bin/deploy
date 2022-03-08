@@ -29,7 +29,7 @@ while getopts 'e:i:' flag; do
 done
 
 if [[ -z "${IMAGE_NAME}" ]]; then
-    log_error "Docker image name provided was not provided."
+    log_error "Docker image name was not provided."
     exit 1
 fi
 
