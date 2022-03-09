@@ -14,7 +14,6 @@ set -e
 set +x
 
 export AWS_DEFAULT_REGION=us-west-2
-REGION=us-west-2
 ENVIRONMENT_NAME="staging"
 IMAGE_NAME=""
 STACK_NAME=""
@@ -71,31 +70,31 @@ TIMESTAMP=$(date +%s)
 
 aws s3 sync ./infra s3://seattle-civiform-cftmpl/"${TIMESTAMP}"
 aws cloudformation update-stack \
-  --region ${REGION} \
+  --region ${AWS_DEFAULT_REGION} \
   --stack-name "${STACK_NAME}" \
-  --template-url "https://seattle-civiform-cftmpl.s3-${REGION}.amazonaws.com/${TIMESTAMP}/stack.yaml" \
+  --template-url "https://seattle-civiform-cftmpl.s3-${AWS_DEFAULT_REGION}.amazonaws.com/${TIMESTAMP}/stack.yaml" \
   --parameters "[{\"ParameterKey\": \"Timestamp\", \"ParameterValue\": \"${TIMESTAMP}\"}, {\"ParameterKey\": \"Environment\", \"ParameterValue\": \"${ENVIRONMENT_NAME}\"}]"
 
 aws cloudformation wait stack-update-complete --stack-name "${STACK_NAME}"
 
 ECSSERVICE=$(aws cloudformation describe-stacks \
-  --region ${REGION} \
+  --region ${AWS_DEFAULT_REGION} \
   --stack-name "${STACK_NAME}" |
     jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSService") | .OutputValue')
 
 ECSCLUSTER=$(aws cloudformation describe-stacks \
-  --region ${REGION} \
+  --region ${AWS_DEFAULT_REGION} \
   --stack-name "${STACK_NAME}" |
     jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSCluster") | .OutputValue')
 
 aws ecs update-service \
-  --region=${REGION} \
+  --region=${AWS_DEFAULT_REGION} \
   --cluster "${ECSCLUSTER}" \
   --service "${ECSSERVICE}" \
   --force-new-deployment
 
 deadline=$(($(date +%s) + 900))
-until aws ecs wait services-stable --region=${REGION} --cluster "${ECSCLUSTER}" --services "${ECSSERVICE}"; do
+until aws ecs wait services-stable --region=${AWS_DEFAULT_REGION} --cluster "${ECSCLUSTER}" --services "${ECSSERVICE}"; do
   if (( $(date +%s) > deadline )); then
     log_error "deadline exceeded waiting for service update to stabilize"
     exit 1
