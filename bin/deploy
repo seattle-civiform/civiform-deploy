@@ -1,0 +1,102 @@
+#! /usr/bin/env bash
+
+# DOC: Deploy an image along with cloudformation stack changes.
+# DOC: Usage: bin/deploy [OPTION]
+# DOC: options:
+# DOC:     -i    docker image name
+# DOC:     -e    environment (prod or staging) default: staging
+
+function log_error() {
+  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
+}
+
+set -e
+set +x
+
+export AWS_DEFAULT_REGION=us-west-2
+ENVIRONMENT_NAME="staging"
+IMAGE_NAME=""
+STACK_NAME=""
+IMAGE_TAG=""
+
+while getopts 'e:i:' flag; do
+  case "${flag}" in
+    e) ENVIRONMENT_NAME="${OPTARG}" ;;
+    i) IMAGE_NAME="${OPTARG}" ;;
+    *) exit 1 ;;
+  esac
+done
+
+if [[ -z "${IMAGE_NAME}" ]]; then
+    log_error "Docker image name was not provided."
+    exit 1
+fi
+
+case "${ENVIRONMENT_NAME}" in
+  prod)
+      STACK_NAME="civiform"
+      IMAGE_TAG="prod"
+      ;;
+  staging)
+      STACK_NAME="civiform-staging"
+      IMAGE_TAG="latest"
+      ;;
+  *)
+      log_error "Unsupported environment. Only 'prod' or 'staging' are supported"
+      exit 1
+      ;;
+esac
+
+readonly ENVIRONMENT_NAME
+readonly IMAGE_NAME
+readonly STACK_NAME
+readonly IMAGE_TAG
+
+echo "Deploying image ${IMAGE_NAME} to ${ENVIRONMENT_NAME}"
+
+
+aws ecr-public get-login-password --region us-east-1 |
+  docker login --username AWS --password-stdin public.ecr.aws/t1q6b4h2
+
+docker pull "${IMAGE_NAME}"
+
+docker tag \
+  "${IMAGE_NAME}" \
+  "public.ecr.aws/t1q6b4h2/universal-application-tool:${IMAGE_TAG}"
+
+docker push "public.ecr.aws/t1q6b4h2/universal-application-tool:${IMAGE_TAG}"
+
+TIMESTAMP=$(date +%s)
+
+aws s3 sync ./infra s3://seattle-civiform-cftmpl/"${TIMESTAMP}"
+aws cloudformation update-stack \
+  --region ${AWS_DEFAULT_REGION} \
+  --stack-name "${STACK_NAME}" \
+  --template-url "https://seattle-civiform-cftmpl.s3-${AWS_DEFAULT_REGION}.amazonaws.com/${TIMESTAMP}/stack.yaml" \
+  --parameters "[{\"ParameterKey\": \"Timestamp\", \"ParameterValue\": \"${TIMESTAMP}\"}, {\"ParameterKey\": \"Environment\", \"ParameterValue\": \"${ENVIRONMENT_NAME}\"}]"
+
+aws cloudformation wait stack-update-complete --stack-name "${STACK_NAME}"
+
+ECSSERVICE=$(aws cloudformation describe-stacks \
+  --region ${AWS_DEFAULT_REGION} \
+  --stack-name "${STACK_NAME}" |
+    jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSService") | .OutputValue')
+
+ECSCLUSTER=$(aws cloudformation describe-stacks \
+  --region ${AWS_DEFAULT_REGION} \
+  --stack-name "${STACK_NAME}" |
+    jq -r '.Stacks[0].Outputs[] | select(.OutputKey == "ECSCluster") | .OutputValue')
+
+aws ecs update-service \
+  --region=${AWS_DEFAULT_REGION} \
+  --cluster "${ECSCLUSTER}" \
+  --service "${ECSSERVICE}" \
+  --force-new-deployment
+
+deadline=$(($(date +%s) + 900))
+until aws ecs wait services-stable --region=${AWS_DEFAULT_REGION} --cluster "${ECSCLUSTER}" --services "${ECSSERVICE}"; do
+  if (( $(date +%s) > deadline )); then
+    log_error "deadline exceeded waiting for service update to stabilize"
+    exit 1
+  fi
+done
