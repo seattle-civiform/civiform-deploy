@@ -1,0 +1,31 @@
+name: Probe and Deploy Staging
+
+on:
+  # Setting this enables manually triggering workflow in the GitHub UI
+  # see https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
+  workflow_dispatch: {}
+
+permissions: read-all
+
+# Two probers running at once can break each other.
+concurrency:
+  group: stagingenvironment
+  cancel-in-progress: true
+
+jobs:
+  run_prober:
+    runs-on: ubuntu-18.04 # for older version of awscli.
+    steps:
+      - name: Deploy Seattle staging.
+        id: deploy_staging
+        env:
+          DOCKER_BUILDKIT: 1
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+        run: bin/deploy -e staging -t civiform/civiform:latest
+
+      - name: Run prober test
+        run: bin/run-prober
+        env:
+          TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
+          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
