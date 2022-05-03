@@ -16,6 +16,9 @@ jobs:
   run_prober:
     runs-on: ubuntu-18.04 # for older version of awscli.
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
       - name: Deploy Seattle staging.
         id: deploy_staging
         env:
