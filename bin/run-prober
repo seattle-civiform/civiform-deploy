@@ -2,8 +2,6 @@
 
 # DOC: Run the browser test suite in Docker against the staging environment.
 
-source bin/lib.sh
-
 docker run \
   -v "$(pwd)/browser-test/src:/usr/src/civiform-browser-tests/src" \
   -v "$(pwd)/browser-test/bin:/usr/src/civiform-browser-tests/bin" \
