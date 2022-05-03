@@ -22,7 +22,7 @@ jobs:
           DOCKER_BUILDKIT: 1
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
-        run: bin/deploy -e staging -t civiform/civiform:latest
+        run: bin/deploy -e staging -i civiform/civiform:latest
 
       - name: Run prober test
         run: bin/run-prober
