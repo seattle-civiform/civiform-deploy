@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   run_prober:
-    runs-on: ubuntu-18.04 # for older version of awscli.
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
