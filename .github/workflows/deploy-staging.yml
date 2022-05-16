@@ -36,29 +36,20 @@ jobs:
       - name: Get Docker Plugins List
         run: docker plugin ls
         
-      - name: Get Docker Compose Version 1
+      - name: Get Docker Compose v2
         run: docker compose version
 
-      - name: Get Docker-Compose Version 2
+      - name: Get Docker-Compose v1
         run: docker-compose version
         
-#      - name: Get Docker-Compose Version 3
-#        run:  /usr/local/lib/docker/cli-plugins/docker-compose version
+      - name: Install Docker Compose v2 new
+        run:  sudo apt-get install docker-compose-plugin
         
-#      - name: Get Docker-Compose Version 4
-#        run: $HOME/.docker/cli-plugins/docker-compose version
+      - name: Get Docker Compose v2
+        run: docker compose version
         
       - name: Get Docker Compose Path
         run: which docker-compose
-        
-      - name: whoami
-        run: whoami
-        
-      - name: echo home
-        run: echo $HOME
-        
-      - name: Print apt list installed
-        run: find $HOME -type f -name docker-compose
         
         
         
