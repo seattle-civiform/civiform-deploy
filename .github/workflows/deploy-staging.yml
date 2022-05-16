@@ -54,6 +54,9 @@ jobs:
       - name: whoami
         run: whoami
         
+      - name: echo home
+        run: echo $HOME
+        
       - name: Print apt list installed
         run: find $HOME -type f -name docker-compose
         
