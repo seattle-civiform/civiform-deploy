@@ -51,5 +51,13 @@ jobs:
       - name: Get Docker Compose Path
         run: which docker-compose
         
+      - name: whoami
+        run: whoami
+        
       - name: Print apt list installed
-        run: find / -type f -name docker-compose 2>/dev/null
+        run: find /usr -type f -name docker-compose 2>/dev/null
+        
+        
+        
+        
+        
