@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   run_prober:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -36,16 +36,16 @@ jobs:
       - name: Get Docker Compose v2
         run: docker compose version
         
-      - name: Add gpg
-        run: |
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-          sudo apt update
-          sudo apt remove moby-compose
-          sudo apt install docker-compose-plugin
-        
-      - name: Get Docker Compose v2
-        run: docker compose version
+#      - name: Add gpg
+#        run: |
+#          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+#          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+#          sudo apt update
+#          sudo apt remove moby-compose
+#          sudo apt install docker-compose-plugin
+#       
+#      - name: Get Docker Compose v2
+#        run: docker compose version
 
         
         
