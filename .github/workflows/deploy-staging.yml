@@ -32,8 +32,14 @@ jobs:
 #        run: bin/run-prober
       - name: Get Docker Version
         run: docker version
+        
       - name: Get Docker Compose Version
         run: docker compose version
+
       - name: Get Docker-Compose Version
         run: docker-compose version
+        
+      - name: Get Docker-Compose Version
+        run: find / -name docker-compose -print 2>/dev/null
+        
         
