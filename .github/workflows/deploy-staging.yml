@@ -39,7 +39,10 @@ jobs:
       - name: Get Docker-Compose Version
         run: docker-compose version
         
-      - name: Get Docker-Compose Version
-        run: find / -name docker-compose -print 2>/dev/null
+        
+      - name: Get Docker-Compose Paths
+        run: |        
+          whereis /usr/local/lib/docker/cli-plugins/docker-compose
+          whereis $HOME/.docker/cli-plugins/docker-compose
         
         
