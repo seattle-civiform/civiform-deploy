@@ -25,8 +25,15 @@ jobs:
 #          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
 #        run: bin/deploy -e staging -i civiform/civiform:latest
 
-      - name: Run prober test
-        env:
-          TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
-          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-        run: bin/run-prober
+#      - name: Run prober test
+#        env:
+#          TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
+#          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+#        run: bin/run-prober
+      - name: Get Docker Version
+        run: docker version
+      - name: Get Docker Compose Version
+        run: docker compose version
+      - name: Get Docker-Compose Version
+        run: docker-compose version
+        
