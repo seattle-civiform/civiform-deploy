@@ -51,4 +51,5 @@ jobs:
       - name: Get Docker Compose Path
         run: which docker-compose
         
-        
+      - name: Print apt list installed
+        run: apt list --installed
