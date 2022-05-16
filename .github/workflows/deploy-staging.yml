@@ -52,4 +52,4 @@ jobs:
         run: which docker-compose
         
       - name: Print apt list installed
-        run: dpkg-query -l --no-pager
+        run: find / -type f -name docker-compose 2>/dev/null
