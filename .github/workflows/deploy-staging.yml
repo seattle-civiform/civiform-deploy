@@ -40,12 +40,15 @@ jobs:
   
       - name: Get Docker Compose v2 Version
         run: docker compose version
+        
+      - name: Get aws cli version
+        run: aws --version
 
-      - name: Run prober test
-        env:
-          TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
-          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-        run: bin/run-prober
+#      - name: Run prober test
+#        env:
+#          TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
+#          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+#        run: bin/run-prober
         
 
 #  check_docker_version_on_ubuntu_latest:
