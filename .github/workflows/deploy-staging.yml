@@ -1,4 +1,4 @@
-name: Probe and Deploy Staging
+name: Deploy Staging and Run Probers
 
 on:
   # Setting this enables manually triggering workflow in the GitHub UI
