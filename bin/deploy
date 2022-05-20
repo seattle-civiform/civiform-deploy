@@ -91,7 +91,8 @@ aws ecs update-service \
   --region=${AWS_DEFAULT_REGION} \
   --cluster "${ECSCLUSTER}" \
   --service "${ECSSERVICE}" \
-  --force-new-deployment
+  --force-new-deployment \
+  --no-cli-pager
 
 deadline=$(($(date +%s) + 900))
 until aws ecs wait services-stable --region=${AWS_DEFAULT_REGION} --cluster "${ECSCLUSTER}" --services "${ECSSERVICE}"; do
