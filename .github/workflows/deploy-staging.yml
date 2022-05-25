@@ -27,14 +27,14 @@ jobs:
 
       - name: Run prober test
         env:
-          RECORD_VIDEO: 1
+#          RECORD_VIDEO: 1
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
         run: bin/run-prober
       
-      - name: Save recorded video
-        uses: actions/upload-artifact@v3
-        with:
-          name: browser-test-videos
-          path: tmp/videos/
-          retention-days: 1
+#      - name: Save recorded video
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: browser-test-videos
+#          path: tmp/videos/
+#          retention-days: 1
