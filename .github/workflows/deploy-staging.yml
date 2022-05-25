@@ -36,5 +36,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: browser-test-videos
-          path: browser-test/tmp/videos/
+          path: tmp/videos/
           retention-days: 1
