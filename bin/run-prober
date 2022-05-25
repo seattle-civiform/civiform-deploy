@@ -4,7 +4,9 @@
 docker pull civiform/civiform-browser-test:latest
 
 docker run \
+  -v "$(pwd)/tmp:/usr/src/civiform-browser-tests/tmp" \
   -e BASE_URL="https://staging.seattle.civiform.com" \
+  -e RECORD_VIDEO="${RECORD_VIDEO}" \
   -e TEST_USER_LOGIN="${TEST_USER_LOGIN}" \
   -e TEST_USER_PASSWORD="${TEST_USER_PASSWORD}" \
   civiform/civiform-browser-test:latest \
