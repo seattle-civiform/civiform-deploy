@@ -1,9 +1,10 @@
 name: Deploy Staging and Run Probers
 
 on:
-  # Setting this enables manually triggering workflow in the GitHub UI
-  # see https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
   workflow_dispatch: {}
+  schedule:
+    - cron: '0 0 1/1 * *'
+    - cron: '0 12 1/1 * *'
 
 permissions: read-all
 
