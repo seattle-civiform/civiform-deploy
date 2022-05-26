@@ -1,4 +1,4 @@
-name: pr_test
+name: Cloudformation PR Checks
 
 on:
   pull_request:
