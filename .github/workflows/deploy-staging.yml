@@ -1,4 +1,4 @@
-name: Deploy Staging and Run Probers
+name: Seattle Staging Deploy
 
 on:
   workflow_dispatch: {}
