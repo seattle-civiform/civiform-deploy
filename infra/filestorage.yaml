@@ -52,7 +52,7 @@ Resources:
   bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      BucketName: !Join [".", [!Ref Environment, "filestore.s3"]]
+      BucketName: !Join ["-", [!Ref Environment, "filestore-s3"]]
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
