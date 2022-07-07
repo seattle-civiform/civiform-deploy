@@ -161,6 +161,8 @@ Resources:
               Value: !Sub "${MeasurementId}"
             - Name: CIVIFORM_API_SECRET_SALT
               Value: !Sub '{{resolve:secretsmanager:${Environment}-api-secret-salt:SecretString:CIVIFORM_API_SECRET_SALT}}'
+            - Name: DATABASE_APPLY_DESTRUCTIVE_CHANGES
+              Value: 'true'
           Cpu: 1024
           Memory: 8192
           PortMappings:
