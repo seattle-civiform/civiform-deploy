@@ -163,6 +163,8 @@ Resources:
               Value: !Sub '{{resolve:secretsmanager:${Environment}-api-secret-salt:SecretString:CIVIFORM_API_SECRET_SALT}}'
             - Name: DATABASE_APPLY_DESTRUCTIVE_CHANGES
               Value: 'true'
+            - Name: CIVIFORM_API_KEYS_BAN_GLOBAL_SUBNET
+              Value: 'true'
           Cpu: 1024
           Memory: 8192
           PortMappings:
