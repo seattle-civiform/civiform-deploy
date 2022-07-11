@@ -164,7 +164,7 @@ Resources:
             - Name: DATABASE_APPLY_DESTRUCTIVE_CHANGES
               Value: 'true'
             - Name: CIVIFORM_API_KEYS_BAN_GLOBAL_SUBNET
-              Value: 'true'
+              Value: 'false'
           Cpu: 1024
           Memory: 8192
           PortMappings:
