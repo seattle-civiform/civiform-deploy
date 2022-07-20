@@ -68,6 +68,13 @@ docker push "public.ecr.aws/t1q6b4h2/universal-application-tool:${IMAGE_TAG}"
 
 TIMESTAMP=$(date +%s)
 
+# Create a database snapshot when deploying prod
+if [[ "${ENVIRONMENT_NAME}" == "prod" ]]; then
+  aws rds create-db-snapshot \
+    --db-instance-identifier "${ENVIRONMENT_NAME}"-civiform-postgres-db \
+    --db-snapshot-identifier "${ENVIRONMENT_NAME}"-predeployment-snapshot-"${TIMESTAMP}"
+fi
+
 aws s3 sync ./infra s3://seattle-civiform-cftmpl/"${TIMESTAMP}"
 aws cloudformation update-stack \
   --region ${AWS_DEFAULT_REGION} \
