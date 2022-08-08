@@ -26,12 +26,22 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
         run: bin/deploy -e staging -i civiform/civiform:latest
 
-      - name: Run prober test
+      #- name: Run prober tests
+      #  env:
+      #    TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
+      #    TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+      #  run: bin/run-prober
+        
+      - name: Run Prober tests
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-        run: bin/run-prober
-      
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 50
+          max_attempts: 2
+          retry_wait_seconds: 30
+          command: bin/run-prober
       
 #      re-add this to prover env      
 #          RECORD_VIDEO: 1
