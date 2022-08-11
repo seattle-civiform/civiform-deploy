@@ -73,6 +73,13 @@ if [[ "${ENVIRONMENT_NAME}" == "prod" ]]; then
   aws rds create-db-snapshot \
     --db-instance-identifier "${ENVIRONMENT_NAME}"-civiform-postgres-db \
     --db-snapshot-identifier "${ENVIRONMENT_NAME}"-predeployment-snapshot-"${TIMESTAMP}"
+
+  echo "create-db-snapshot: running"
+
+  aws rds wait db-snapshot-completed \
+    --db-snapshot-identifier "${ENVIRONMENT_NAME}"-predeployment-snapshot-"${TIMESTAMP}"
+
+  echo "create-db-snapshot completed"
 fi
 
 aws s3 sync ./infra s3://seattle-civiform-cftmpl/"${TIMESTAMP}"
