@@ -21,6 +21,11 @@ Mappings:
       uri: https://login.seattle.gov/#/registration?appName=CiviForm
     staging:
       uri: https://qalogin.seattle.gov:12443/#/registration?appName=CIVIFORM_STAGE
+  FeatureFlagOverrides:
+    prod:
+      enabled: false
+    staging:
+      enabled: true      
 Parameters:
   Environment:
     Type: String
@@ -165,6 +170,8 @@ Resources:
               Value: 'true'
             - Name: CIVIFORM_API_KEYS_BAN_GLOBAL_SUBNET
               Value: 'false'
+            - Name: FEATURE_FLAG_OVERRIDES_ENABLED
+              Value: !FindInMap [FeatureFlagOverrides, !Ref Environment, enabled]              
           Cpu: 1024
           Memory: 8192
           PortMappings:
