@@ -26,11 +26,6 @@ Mappings:
       enabled: false
     staging:
       enabled: true
-  ApplicationStatusTrackingFeatureFlag:
-      prod:
-        enabled: false
-      staging: 
-        enabled: true
 Parameters:
   Environment:
     Type: String
@@ -177,8 +172,6 @@ Resources:
               Value: 'false'
             - Name: FEATURE_FLAG_OVERRIDES_ENABLED
               Value: !FindInMap [FeatureFlagOverrides, !Ref Environment, enabled]
-            - Name: CIVIFORM_APPLICATION_STATUS_TRACKING_ENABLED
-              Value: !FindInMap [ApplicationStatusTrackingFeatureFlag, !Ref Environment, enabled]
           Cpu: 1024
           Memory: 8192
           PortMappings:
