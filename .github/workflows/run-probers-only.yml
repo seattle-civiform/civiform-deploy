@@ -22,7 +22,6 @@ jobs:
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-          DISABLE_SCREENSHOTS: true
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 50
