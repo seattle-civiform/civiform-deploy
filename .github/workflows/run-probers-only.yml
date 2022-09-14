@@ -4,7 +4,7 @@ name: Run Probers Only
 on:
   workflow_dispatch: {}
 
-permissions: read-all
+#permissions: read-all
 
 # Two probers running at once can break each other.
 concurrency:
