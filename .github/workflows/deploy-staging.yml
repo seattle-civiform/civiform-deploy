@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      
+      - name: resolve latest snapshot tag
+        run: source bin/resolve-latest-snapshot-tag
         
       - name: Deploy Seattle staging
         env:
@@ -36,3 +39,12 @@ jobs:
           max_attempts: 2
           retry_wait_seconds: 30
           command: bin/run-prober
+      
+      - name: Notify Slack Complete
+        if: always()
+        uses: slackapi/slack-github-action@v1.18.0
+        with:
+          channel-id:  'C03UXPUEXU4'
+          slack-message: "Seattle Staging Deploy for ${{ env.LATEST_SNAPSHOT_TAG }}:  ${{ job.status }}"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
