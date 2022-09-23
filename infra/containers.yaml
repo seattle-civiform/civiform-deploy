@@ -172,6 +172,8 @@ Resources:
               Value: 'false'
             - Name: FEATURE_FLAG_OVERRIDES_ENABLED
               Value: !FindInMap [FeatureFlagOverrides, !Ref Environment, enabled]
+            - Name: ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS
+              Value: 'true'
           Cpu: 1024
           Memory: 8192
           PortMappings:
