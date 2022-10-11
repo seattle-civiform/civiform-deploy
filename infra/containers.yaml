@@ -26,6 +26,11 @@ Mappings:
       enabled: false
     staging:
       enabled: true
+  ApplicantOidcProviderLogout:
+    prod:
+      enabled: false
+    staging:
+      enabled: true
 Parameters:
   Environment:
     Type: String
@@ -172,6 +177,8 @@ Resources:
               Value: 'false'
             - Name: FEATURE_FLAG_OVERRIDES_ENABLED
               Value: !FindInMap [FeatureFlagOverrides, !Ref Environment, enabled]
+            - Name: APPLICANT_OIDC_PROVIDER_LOGOUT
+              Value: !FindInMap [ApplicantOidcProviderLogout, !Ref Environment, enabled]
             - Name: ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS
               Value: 'true'
             - Name: CIVIFORM_APPLICATION_STATUS_TRACKING_ENABLED
