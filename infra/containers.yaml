@@ -30,7 +30,7 @@ Mappings:
     prod:
       enabled: false
     staging:
-      enabled: true
+      enabled: false
 Parameters:
   Environment:
     Type: String
