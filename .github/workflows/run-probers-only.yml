@@ -22,7 +22,6 @@ jobs:
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
-          WHITELABEL_CIVIC_ENTITY_SHORT_NAME: "NOT_SEATTLE_TEST"
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 50
