@@ -165,6 +165,10 @@ Resources:
               Value: !FindInMap [Registration, !Ref Environment, uri]
             - Name: ADFS_GLOBAL_ADMIN_GROUP
               Value: !FindInMap [AdminGroup, !Ref Environment, group]
+            - Name: WHITELABEL_CIVIC_ENTITY_SHORT_NAME
+              Value: 'Seattle'
+            - Name: WHITELABEL_CIVIC_ENTITY_FULL_NAME
+              Value: 'City of Seattle'
             - Name: BASE_URL
               Value: !Sub "https://${DomainName}"
             - Name: MEASUREMENT_ID
