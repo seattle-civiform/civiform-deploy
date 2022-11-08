@@ -10,7 +10,7 @@ Mappings:
     prod:
       sender: civiform-notification@seattle.gov
     staging:
-      sender: noreply@staging.seattle.civiform.com
+      sender: civiForm.staging@seattle.gov
   AdminGroup:
     prod:
       group: ad\ITD_CiviForm_Admins
