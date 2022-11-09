@@ -9,6 +9,9 @@ jobs:
   run_prober:
     runs-on: ubuntu-latest
     steps:
+      - name: Try to fail
+        run: exit 1
+      
       - name: Notify Slack Complete
         if: always()
         uses: slackapi/slack-github-action@v1.18.0
