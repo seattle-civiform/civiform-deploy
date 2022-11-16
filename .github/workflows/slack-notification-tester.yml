@@ -13,7 +13,7 @@ jobs:
         if: always()
         uses: slackapi/slack-github-action@v1.18.0
         with:
-          channel-id:  ${{ env.SLACK_CHANNEL }}
+          channel-id:  'C03UXPUEXU4'
           slack-message: ":space-needle: Test Message from Seattle Staging Deploy:  ${{ job.status }} ${{ env.ICON }} <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }} TEST>"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
