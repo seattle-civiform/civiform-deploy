@@ -17,6 +17,14 @@ jobs:
   run_prober:
     runs-on: ubuntu-latest
     steps:
+      - name: Notify Slack Start
+        uses: slackapi/slack-github-action@v1.18.0
+        with:
+          channel-id: ${{ env.SLACK_CHANNEL }}
+          slack-message: ":space-needle: Starting Seattle Staging Deploy."
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          
       - name: Checkout
         uses: actions/checkout@v3
       
@@ -44,8 +52,8 @@ jobs:
         if: always()
         uses: slackapi/slack-github-action@v1.18.0
         with:
-          channel-id: 'C03UXPUEXU4'
-          slack-message: "${{ env.STATUS_ICON }} Seattle Staging Deploy for ${{ env.LATEST_SNAPSHOT_TAG }}: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>"
+          channel-id: ${{ env.SLACK_CHANNEL }}
+          slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Staging Deploy for ${{ env.LATEST_SNAPSHOT_TAG }}: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           STATUS_ICON: ${{fromJSON('[":no_entry:", ":white_check_mark:"]')[job.status == 'success']}}
