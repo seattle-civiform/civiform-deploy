@@ -3,7 +3,6 @@ name: Seattle Staging Deploy
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '0 0 1/1 * *'
     - cron: '0 12 1/1 * *'
 
 permissions: read-all
