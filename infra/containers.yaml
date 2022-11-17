@@ -30,7 +30,12 @@ Mappings:
     prod:
       enabled: false
     staging:
-      enabled: false
+      enabled: true
+  ApplicantOidcProviderLogoutUri:
+    prod:
+      uri: ''
+    staging:
+      uri: https://qalogin.seattle.gov:12443/#/logout?appName=CIVIFORM_STAGE      
 Parameters:
   Environment:
     Type: String
@@ -183,6 +188,8 @@ Resources:
               Value: !FindInMap [FeatureFlagOverrides, !Ref Environment, enabled]
             - Name: APPLICANT_OIDC_PROVIDER_LOGOUT
               Value: !FindInMap [ApplicantOidcProviderLogout, !Ref Environment, enabled]
+            - Name: APPLICANT_OIDC_OVERRIDE_LOGOUT_URL
+              Value: !FindInMap [ApplicantOidcProviderLogoutUri, !Ref Environment, uri]
             - Name: ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS
               Value: 'true'
             - Name: CIVIFORM_APPLICATION_STATUS_TRACKING_ENABLED
