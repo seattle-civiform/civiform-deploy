@@ -40,7 +40,7 @@ jobs:
           AWS_SESSION_TOKEN: ${{ secrets.SESSION_TOKEN }}
         run: bin/check-cfn-change
 
-      - uses: mshick/add-pr-comment@v1
+      - uses: mshick/add-pr-comment@v2
         if: failure() && contains(toJSON(steps.file_changes.outputs.files), 'infra/')
         name: Send failure comment.
         with:
@@ -51,7 +51,7 @@ jobs:
             > ${{ steps.check_change.outputs.failure_msg }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: mshick/add-pr-comment@v1
+      - uses: mshick/add-pr-comment@v2
         name: Send success comment.
         if: success() && contains(toJSON(steps.file_changes.outputs.files), 'infra/')
         with:
