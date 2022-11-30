@@ -25,6 +25,13 @@ jobs:
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 50
-          max_attempts: 2
+          max_attempts: 1
           retry_wait_seconds: 30
           command: bin/run-prober
+          
+      - name: Upload test videos on failure
+        uses: actions/upload-artifact@v3
+        with:
+          name: tests videos
+          path: browser-test/tmp
+        if: failure()
