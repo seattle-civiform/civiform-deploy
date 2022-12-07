@@ -28,12 +28,12 @@ Mappings:
       enabled: true
   ApplicantOidcProviderLogout:
     prod:
-      enabled: false
+      enabled: true
     staging:
       enabled: true
   ApplicantOidcProviderLogoutUri:
     prod:
-      uri: ''
+      uri: https://login.seattle.gov/#/logout?appName=CIVIFORM
     staging:
       uri: https://qalogin.seattle.gov:12443/#/logout?appName=CIVIFORM_STAGE
 Parameters:
