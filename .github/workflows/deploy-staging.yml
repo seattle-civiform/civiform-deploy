@@ -37,7 +37,6 @@ jobs:
         run: bin/deploy -e staging -i civiform/civiform:latest
 
       - name: Run Prober tests
-        if: ${{ false }} # disable temporarily
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
