@@ -196,6 +196,12 @@ Resources:
               Value: 'true'
             - Name: CIVIFORM_APPLICATION_STATUS_TRACKING_ENABLED
               Value: 'true'
+            - Name: STAGING_ADMIN_LIST
+              Value: 'civiForm.staging@seattle.gov'
+            - Name: STAGING_TI_LIST
+              Value: 'civiForm.staging@seattle.gov'
+            - Name: STAGING_APPLICANT_LIST
+              Value: 'civiForm.staging@seattle.gov'
           Cpu: 1024
           Memory: 8192
           PortMappings:
