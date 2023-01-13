@@ -36,6 +36,11 @@ Mappings:
       uri: https://login.seattle.gov/#/logout?appName=CIVIFORM
     staging:
       uri: https://qalogin.seattle.gov:12443/#/logout?appName=CIVIFORM_STAGE
+  PredicatesMultipleQuestionsEnabled:
+    prod:
+      enabled: false
+    staging:
+      enabled: true
 Parameters:
   Environment:
     Type: String
@@ -202,6 +207,8 @@ Resources:
               Value: 'civiForm.staging@seattle.gov'
             - Name: STAGING_APPLICANT_LIST
               Value: 'civiForm.staging@seattle.gov'
+            - Name: PREDICATES_MULTIPLE_QUESTIONS_ENABLED
+              Value: !FindInMap [PredicatesMultipleQuestionsEnabled, !Ref Environment, enabled]
           Cpu: 1024
           Memory: 8192
           PortMappings:
