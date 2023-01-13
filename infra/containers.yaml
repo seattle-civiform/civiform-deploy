@@ -41,6 +41,11 @@ Mappings:
       enabled: false
     staging:
       enabled: true
+  ProgramEligibilityConditionsEnabled:
+    prod:
+      enabled: false
+    staging:
+      enabled: true
 Parameters:
   Environment:
     Type: String
@@ -209,6 +214,8 @@ Resources:
               Value: 'civiForm.staging@seattle.gov'
             - Name: PREDICATES_MULTIPLE_QUESTIONS_ENABLED
               Value: !FindInMap [PredicatesMultipleQuestionsEnabled, !Ref Environment, enabled]
+            - Name: PROGRAM_ELIGIBILITY_CONDITIONS_ENABLED
+              Value: !FindInMap [ProgramEligibilityConditionsEnabled, !Ref Environment, enabled]
           Cpu: 1024
           Memory: 8192
           PortMappings:
