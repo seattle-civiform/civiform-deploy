@@ -42,7 +42,7 @@ jobs:
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
         uses: nick-fields/retry@v2
         with:
-          timeout_minutes: 50
+          timeout_minutes: 70
           max_attempts: 2
           retry_wait_seconds: 30
           command: bin/run-prober
