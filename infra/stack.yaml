@@ -6,7 +6,7 @@ Mappings:
       Domain: civiform.seattle.gov
       MeasurementId: G-HXM0Y35TGE
     staging:
-      Domain: staging.seattle.civiform.com
+      Domain: civiformstage.seattle.gov
       MeasurementId: G-HXM0Y35TGE
   DNS:
     prod:
@@ -14,8 +14,8 @@ Mappings:
       Domain: seattle.civiform.com
       HostedZone: Z02860647AHUYUQTEAPO
     staging:
-      Domain: staging.seattle.civiform.com
-      HostedZone: Z02860647AHUYUQTEAPO
+      Domain: civiformstage.seattle.gov
+      HostedZone: Z09094253PF8FH1GR3WPW
   S3TaskRoles:
     prod:
       role: arn:aws:iam::405662711265:role/AmazonECSTaskS3BucketRole
