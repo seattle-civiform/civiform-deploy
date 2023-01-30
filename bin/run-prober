@@ -8,7 +8,7 @@ docker pull civiform/civiform-browser-test:latest
 export RECORD_VIDEO=1
 
 docker run \
-  -e BASE_URL="https://staging.seattle.civiform.com" \
+  -e BASE_URL="https://civiformstage.seattle.gov" \
   -e RECORD_VIDEO="${RECORD_VIDEO}" \
   -e TEST_USER_AUTH_STRATEGY="seattle-staging" \
   -e TEST_USER_LOGIN="${TEST_USER_LOGIN}" \
