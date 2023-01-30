@@ -212,6 +212,8 @@ Resources:
               Value: 'civiForm.staging@seattle.gov'
             - Name: STAGING_APPLICANT_LIST
               Value: 'civiForm.staging@seattle.gov'
+            - Name: STAGING_HOSTNAME
+              Value: 'civiformstage.seattle.gov'
             - Name: PREDICATES_MULTIPLE_QUESTIONS_ENABLED
               Value: !FindInMap [PredicatesMultipleQuestionsEnabled, !Ref Environment, enabled]
             - Name: PROGRAM_ELIGIBILITY_CONDITIONS_ENABLED
