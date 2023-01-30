@@ -5,7 +5,7 @@ Mappings:
     prod:
       CertArn: arn:aws:acm:us-west-2:405662711265:certificate/74f32a1f-e8aa-453c-88f1-b2aac0f7e92b
     staging:
-      CertArn: arn:aws:acm:us-west-2:405662711265:certificate/e35f35af-6329-4277-8cbf-a8c8a6ab2b40
+      CertArn: arn:aws:acm:us-west-2:405662711265:certificate/066b836e-211d-4ac3-8f30-9eaeda1886d0
 Parameters:
   VPCId:
     Description: The id of the VPC to add our LB to.
