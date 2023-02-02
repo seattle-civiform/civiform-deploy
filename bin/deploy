@@ -21,6 +21,12 @@ then
     exit 1
 fi
 
+if [[ -z "$(aws --version | grep 'aws-cli/2')" ]]; then
+    echo "aws cli tools must be version 2"; 
+    echo "go here to install https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html"
+    exit 1
+fi
+
 if ! command -v docker &> /dev/null
 then
     echo "docker could not be found"
