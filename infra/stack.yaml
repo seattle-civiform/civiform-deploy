@@ -121,4 +121,4 @@ Outputs:
     Value: !GetAtt 'Container.Outputs.ECSService'
   ECSCluster:
     Description: The ARN of the cluster.
-    Value: !GetAtt 'Container.Outputs.ECSCluster'
+    Value: !GetAtt 'Container.Outputs.ECSCluster' 
