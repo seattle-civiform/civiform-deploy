@@ -34,7 +34,7 @@ jobs:
         if: contains(toJSON(steps.file_changes.outputs.all_changed_files), 'infra/')
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 51
 
       - name: Run check-change.
         if: contains(toJSON(steps.file_changes.outputs.all_changed_files), 'infra/')
