@@ -31,11 +31,11 @@ Parameters:
     Default: civiform
   Environment:
     Description: prod/staging
-    AllowedValues: ["staging", "prod"]
+    AllowedValues: ['staging', 'prod']
     Type: String
     Default: staging
 Conditions:
-  CreateProdResources: !Equals [!Ref Environment, "prod"]
+  CreateProdResources: !Equals [!Ref Environment, 'prod']
 Resources:
   VPC:
     Type: AWS::CloudFormation::Stack
