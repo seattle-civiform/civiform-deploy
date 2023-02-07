@@ -8,7 +8,7 @@ permissions: read-all
 
 jobs:
   cloudformation:
-    runs-on: ubuntu-18.04 # for older version of awscli.
+    runs-on: ubuntu-latest
     permissions:
       pull-requests: write # to allow for mshick/add-pr-comment to add comments
     steps:
