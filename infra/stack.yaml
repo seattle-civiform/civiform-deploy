@@ -10,9 +10,8 @@ Mappings:
       MeasurementId: G-HXM0Y35TGE
   DNS:
     prod:
-      # The city's DNS is configured as a CNAME to this address.
-      Domain: seattle.civiform.com
-      HostedZone: Z02860647AHUYUQTEAPO
+      Domain: civiform.seattle.gov
+      HostedZone: Z0114244YOYV2OC4F77Z
     staging:
       Domain: civiformstage.seattle.gov
       HostedZone: Z09094253PF8FH1GR3WPW
