@@ -38,12 +38,12 @@ Mappings:
       uri: https://qalogin.seattle.gov:12443/#/logout?appName=CIVIFORM_STAGE
   PredicatesMultipleQuestionsEnabled:
     prod:
-      enabled: false
+      enabled: true
     staging:
       enabled: true
   ProgramEligibilityConditionsEnabled:
     prod:
-      enabled: false
+      enabled: true
     staging:
       enabled: true
 Parameters:
