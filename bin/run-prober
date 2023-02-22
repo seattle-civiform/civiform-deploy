@@ -16,6 +16,6 @@ docker run \
   -e TEST_USER_DISPLAY_NAME="TEST, UATAPP" \
   -e TEST_CIVIC_ENTITY_SHORT_NAME="Seattle" \
   -e DISABLE_BROWSER_ERROR_WATCHER=true \
-  -e DISABLE_SCREENSHOTS=true \
+  -e DISABLE_SCREENSHOTS=false \
   civiform/civiform-browser-test:latest \
   -c "yarn install && yarn probe"
