@@ -218,6 +218,8 @@ Resources:
               Value: !FindInMap [PredicatesMultipleQuestionsEnabled, !Ref Environment, enabled]
             - Name: PROGRAM_ELIGIBILITY_CONDITIONS_ENABLED
               Value: !FindInMap [ProgramEligibilityConditionsEnabled, !Ref Environment, enabled]
+            - Name: FEATURE_FLAG_REPORTING_ENABLED
+              Value: 'true'
           Cpu: 1024
           Memory: 8192
           PortMappings:
