@@ -46,6 +46,11 @@ Mappings:
       enabled: true
     staging:
       enabled: true
+  FeatureFlagReportingEnabled:
+    prod:
+      enabled: false
+    staging:
+      enabled: true
 Parameters:
   Environment:
     Type: String
@@ -219,7 +224,7 @@ Resources:
             - Name: PROGRAM_ELIGIBILITY_CONDITIONS_ENABLED
               Value: !FindInMap [ProgramEligibilityConditionsEnabled, !Ref Environment, enabled]
             - Name: FEATURE_FLAG_REPORTING_ENABLED
-              Value: 'true'
+              Value: !FindInMap [FeatureFlagReportingEnabled, !Ref Environment, enabled]
           Cpu: 1024
           Memory: 8192
           PortMappings:
