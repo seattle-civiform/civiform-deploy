@@ -241,14 +241,14 @@ Resources:
               Value: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates'
             - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ENABLED
               Value: !FindInMap [EsriAddressServiceAreaValidationEnabled, !Ref Environment, enabled]
-            #- Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS
-            #  Value: '["Seattle"]'
-            #- Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS
-            #  Value: '["Seattle"]'
-            #- Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS
-            #  Value: '["https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query"]'
-            #- Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES
-            #  Value: '["CITYNAME"]'
+            - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS.0
+              Value: 'Seattle'
+            - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS.0
+              Value: 'Seattle'
+            - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS.0
+              Value: 'https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query'
+            - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES.0
+              Value: 'CITYNAME'
           Cpu: 1024
           Memory: 8192
           PortMappings:
