@@ -251,7 +251,11 @@ Resources:
               Value: 'Renton'
             - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS.0
               Value: 'https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query'
+            - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS.1
+              Value: 'https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query'
             - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES.0
+              Value: 'CITYNAME'
+            - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES.1
               Value: 'CITYNAME'
           Cpu: 1024
           Memory: 8192
