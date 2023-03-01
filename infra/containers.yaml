@@ -233,7 +233,7 @@ Resources:
               Value: !FindInMap [PredicatesMultipleQuestionsEnabled, !Ref Environment, enabled]
             - Name: PROGRAM_ELIGIBILITY_CONDITIONS_ENABLED
               Value: !FindInMap [ProgramEligibilityConditionsEnabled, !Ref Environment, enabled]
-            - Name: FEATURE_FLAG_REPORTING_ENABLED
+            - Name: CIVIFORM_ADMIN_REPORTING_UI_ENABLED
               Value: !FindInMap [FeatureFlagReportingEnabled, !Ref Environment, enabled]
             - Name: ESRI_ADDRESS_CORRECTION_ENABLED
               Value: !FindInMap [EsriAddressCorrectionEnabled, !Ref Environment, enabled]
