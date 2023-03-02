@@ -46,11 +46,11 @@ Mappings:
       enabled: true
     staging:
       enabled: true
-  FeatureFlagReportingEnabled:
+  CiviformAdminReportingUiEnabled:
     prod:
       enabled: false
     staging:
-      enabled: false
+      enabled: true
   EsriAddressCorrectionEnabled:
     prod:
       enabled: false
@@ -234,7 +234,7 @@ Resources:
             - Name: PROGRAM_ELIGIBILITY_CONDITIONS_ENABLED
               Value: !FindInMap [ProgramEligibilityConditionsEnabled, !Ref Environment, enabled]
             - Name: CIVIFORM_ADMIN_REPORTING_UI_ENABLED
-              Value: !FindInMap [FeatureFlagReportingEnabled, !Ref Environment, enabled]
+              Value: !FindInMap [CiviformAdminReportingUiEnabled, !Ref Environment, enabled]
             - Name: ESRI_ADDRESS_CORRECTION_ENABLED
               Value: !FindInMap [EsriAddressCorrectionEnabled, !Ref Environment, enabled]
             - Name: ESRI_FIND_ADDRESS_CANDIDATES_URL
