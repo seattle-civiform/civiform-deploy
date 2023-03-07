@@ -61,6 +61,16 @@ Mappings:
       enabled: false
     staging:
       enabled: true
+  EsriFindAddressCandidatesUri:
+    prod:
+      uri: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates
+    staging:
+      uri: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates
+  EsriAddressServiceAreaValidationUri:
+    prod:
+      uri: https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query
+    staging:
+      uri: https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query
 Parameters:
   Environment:
     Type: String
@@ -238,7 +248,7 @@ Resources:
             - Name: ESRI_ADDRESS_CORRECTION_ENABLED
               Value: !FindInMap [EsriAddressCorrectionEnabled, !Ref Environment, enabled]
             - Name: ESRI_FIND_ADDRESS_CANDIDATES_URL
-              Value: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates'
+              Value: !FindInMap [EsriFindAddressCandidatesUri, !Ref Environment, uri]
             - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ENABLED
               Value: !FindInMap [EsriAddressServiceAreaValidationEnabled, !Ref Environment, enabled]
             - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_LABELS.0
@@ -246,7 +256,7 @@ Resources:
             - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_IDS.0
               Value: 'Seattle'
             - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_URLS.0
-              Value: 'https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query'
+              Value: !FindInMap [EsriAddressServiceAreaValidationUri, !Ref Environment, uri]
             - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES.0
               Value: 'CITYNAME'
           Cpu: 1024
