@@ -71,6 +71,11 @@ Mappings:
       uri: https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query
     staging:
       uri: https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query
+  ProgramReadOnlyViewEnabled:
+    prod:
+      enabled: false
+    staging:
+      enabled: true
 Parameters:
   Environment:
     Type: String
@@ -259,6 +264,8 @@ Resources:
               Value: !FindInMap [EsriAddressServiceAreaValidationUri, !Ref Environment, uri]
             - Name: ESRI_ADDRESS_SERVICE_AREA_VALIDATION_ATTRIBUTES.0
               Value: 'CITYNAME'
+            - Name: PROGRAM_READ_ONLY_VIEW_ENABLED
+              Value: !FindInMap [ProgramReadOnlyViewEnabled, !Ref Environment, enabled]
           Cpu: 1024
           Memory: 8192
           PortMappings:
