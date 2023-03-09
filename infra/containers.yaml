@@ -48,17 +48,17 @@ Mappings:
       enabled: true
   CiviformAdminReportingUiEnabled:
     prod:
-      enabled: true
+      enabled: false
     staging:
       enabled: true
   EsriAddressCorrectionEnabled:
     prod:
-      enabled: false
+      enabled: true
     staging:
       enabled: true
   EsriAddressServiceAreaValidationEnabled:
     prod:
-      enabled: false
+      enabled: true
     staging:
       enabled: true
   EsriFindAddressCandidatesUri:
@@ -73,7 +73,7 @@ Mappings:
       uri: https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query
   ProgramReadOnlyViewEnabled:
     prod:
-      enabled: false
+      enabled: true
     staging:
       enabled: true
 Parameters:
