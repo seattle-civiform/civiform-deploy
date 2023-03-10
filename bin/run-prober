@@ -11,7 +11,7 @@ if [[ -n "${SHARD_NUM}" ]]; then
   SHARD_COMMAND=" -- --shard=${SHARD_NUM}"
 fi
 
-#docker pull civiform/civiform-browser-test:latest
+docker pull civiform/civiform-browser-test:latest
 
 # Enable video recording on CI tests as it will be helpful to debug test
 # failures.
