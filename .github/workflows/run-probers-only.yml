@@ -13,21 +13,26 @@ concurrency:
 
 jobs:
   run_prober:
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        shard_num: [1, 2, 3, 4]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Run Prober tests
+      - name: Run Prober Tests (Chunk ${{ matrix.shard_num }} of ${{ strategy.job-total }})
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
         uses: nick-fields/retry@v2
         with:
-          timeout_minutes: 70
+          timeout_minutes: 30
           max_attempts: 1
-          retry_wait_seconds: 30
-          command: bin/run-prober 1
+          retry_wait_seconds: 15
+          command: bin/run-prober ${{ matrix.shard_num }}/${{ strategy.job-total }}
           
       - name: Upload test videos on failure
         uses: actions/upload-artifact@v3
