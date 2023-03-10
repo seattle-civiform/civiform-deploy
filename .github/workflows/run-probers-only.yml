@@ -13,23 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Pull browser tests image
-        run: docker pull civiform/civiform-browser-test:latest
-        
-      - name: Save image
-        run: docker save civiform/civiform-browser-test:latest --output /tmp/civiform-browser-test.tar
-        
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: civiform-browser-test
-          path: /tmp/civiform-browser-test.tar
-        
   run_prober:
-    needs: [setup]
     strategy:
       max-parallel: 1
       fail-fast: false
