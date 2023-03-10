@@ -18,7 +18,16 @@ jobs:
     steps:
       - name: Pull browser tests image
         run: docker pull civiform/civiform-browser-test:latest
-      
+        
+      - name: Save image
+        run: docker save civiform/civiform-browser-test:latest --output /tmp/civiform-browser-test.tar
+        
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: civiform-browser-test
+          path: /tmp/civiform-browser-test.tar
+        
   run_prober:
     needs: [setup]
     strategy:
@@ -30,6 +39,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        
+      - name: Load image
+        run: |
+          docker load --input /tmp/civiform-browser-test.tar
+          docker image ls -a
         
       - name: Run Prober Tests (Chunk ${{ matrix.shard_num }} of ${{ strategy.job-total }})
         env:
