@@ -3,6 +3,7 @@ name: Run Probers Only
 
 on:
   workflow_dispatch: {}
+  workflow_call:
 
 #permissions: read-all
 
