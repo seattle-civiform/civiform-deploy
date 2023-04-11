@@ -46,6 +46,11 @@ Mappings:
       enabled: true
     staging:
       enabled: true
+  PhoneQuestionTypeEnabled:
+    prod:
+      enabled: false
+    staging:
+      enabled: true
   CiviformAdminReportingUiEnabled:
     prod:
       enabled: false
@@ -266,6 +271,8 @@ Resources:
               Value: 'CITYNAME'
             - Name: PROGRAM_READ_ONLY_VIEW_ENABLED
               Value: !FindInMap [ProgramReadOnlyViewEnabled, !Ref Environment, enabled]
+            - Name: PHONE_QUESTION_TYPE_ENABLED
+              Value: !FindInMap [PhoneQuestionTypeEnabled, !Ref Environment, enabled]
           Cpu: 1024
           Memory: 8192
           PortMappings:
