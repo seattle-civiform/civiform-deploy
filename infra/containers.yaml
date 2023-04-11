@@ -47,7 +47,7 @@ Mappings:
     staging:
       enabled: true
   PhoneQuestionTypeEnabled:
-      prod:
+    prod:
       enabled: false
     staging:
       enabled: true
