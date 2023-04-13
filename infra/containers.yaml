@@ -48,7 +48,7 @@ Mappings:
       enabled: true
   PhoneQuestionTypeEnabled:
     prod:
-      enabled: false
+      enabled: true
     staging:
       enabled: true
   CiviformAdminReportingUiEnabled:
