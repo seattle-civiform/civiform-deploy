@@ -273,6 +273,14 @@ Resources:
               Value: !FindInMap [ProgramReadOnlyViewEnabled, !Ref Environment, enabled]
             - Name: PHONE_QUESTION_TYPE_ENABLED
               Value: !FindInMap [PhoneQuestionTypeEnabled, !Ref Environment, enabled]
+            - Name: SUPPORT_EMAIL_ADDRESS
+              Value: CiviForm@seattle.gov
+            - Name: IT_EMAIL_ADDRESS
+              Value: CiviForm@seattle.gov
+            - Name: COMMON_INTAKE_MORE_RESOURCES_LINK_TEXT
+              Value: Affordable Seattle
+            - Name: COMMON_INTAKE_MORE_RESOURCES_LINK_HREF
+              Value: https://www.affordableseattle.org
           Cpu: 1024
           Memory: 8192
           PortMappings:
