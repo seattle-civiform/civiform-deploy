@@ -53,7 +53,7 @@ Mappings:
       enabled: true
   CiviformAdminReportingUiEnabled:
     prod:
-      enabled: false
+      enabled: true
     staging:
       enabled: true
   EsriAddressCorrectionEnabled:
