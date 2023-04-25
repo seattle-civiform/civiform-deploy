@@ -211,6 +211,8 @@ Resources:
               Value: !Sub '{{resolve:secretsmanager:${Environment}-oidc-secrets:SecretString:ADFS_CLIENT_ID}}'
             - Name: ADFS_SECRET
               Value: !Sub '{{resolve:secretsmanager:${Environment}-oidc-secrets:SecretString:ADFS_SECRET}}'
+            - Name: ADFS_DISCOVERY_URI
+              Value: https://sts.seattle.gov/adfs/.well-known/openid-configuration
             - Name: APPLICANT_REGISTER_URI
               Value: !FindInMap [Registration, !Ref Environment, uri]
             - Name: ADFS_GLOBAL_ADMIN_GROUP
