@@ -21,6 +21,11 @@ Mappings:
       uri: https://login.seattle.gov/#/registration?appName=CiviForm
     staging:
       uri: https://qalogin.seattle.gov:12443/#/registration?appName=CIVIFORM_STAGE
+  IdcsDiscoveryUri:
+     prod:
+       uri: https://idcs-3359adb31e35415e8c1729c5c8098c6d.identity.oraclecloud.com/.well-known/openid-configuration
+     staging:
+       uri: https://idcs-f582fefb879b4db5a88a370e8f2f6013.identity.oraclecloud.com/.well-known/openid-configuration
   FeatureFlagOverrides:
     prod:
       enabled: false
@@ -206,7 +211,7 @@ Resources:
             - Name: IDCS_SECRET
               Value: !Sub '{{resolve:secretsmanager:${Environment}-oidc-secrets:SecretString:IDCS_SECRET}}'
             - Name: IDCS_DISCOVERY_URI
-              Value: !Sub '{{resolve:secretsmanager:${Environment}-oidc-secrets:SecretString:IDCS_DISCOVERY_URI}}'
+              Value: !FindInMap [IdcsDiscoveryUri, !Ref Environment, uri]
             - Name: ADFS_CLIENT_ID
               Value: !Sub '{{resolve:secretsmanager:${Environment}-oidc-secrets:SecretString:ADFS_CLIENT_ID}}'
             - Name: ADFS_SECRET
