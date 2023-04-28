@@ -1,7 +1,13 @@
 name: Seattle Staging Deploy
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      enable_probers:
+        description: 'True to '
+        default: true
+        required: true
+        type: boolean
   schedule:
     - cron: '0 12 1/1 * *'
 
