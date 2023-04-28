@@ -26,7 +26,7 @@ jobs:
         uses: slackapi/slack-github-action@v1.23.0
         with:
           channel-id: 'C03UXPUEXU4'
-          slack-message: ":space-needle: Starting Seattle Staging Deploy."
+          slack-message: ":space-needle: Starting Seattle Staging Deploy. Probers enabled: ${{ github.event.inputs.probers_enabled }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           
