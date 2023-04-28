@@ -22,10 +22,10 @@ Mappings:
     staging:
       uri: https://qalogin.seattle.gov:12443/#/registration?appName=CIVIFORM_STAGE
   IdcsDiscoveryUri:
-     prod:
-       uri: https://idcs-3359adb31e35415e8c1729c5c8098c6d.identity.oraclecloud.com/.well-known/openid-configuration
-     staging:
-       uri: https://idcs-f582fefb879b4db5a88a370e8f2f6013.identity.oraclecloud.com/.well-known/openid-configuration
+    prod:
+      uri: https://idcs-3359adb31e35415e8c1729c5c8098c6d.identity.oraclecloud.com/.well-known/openid-configuration
+    staging:
+      uri: https://idcs-f582fefb879b4db5a88a370e8f2f6013.identity.oraclecloud.com/.well-known/openid-configuration
   FeatureFlagOverrides:
     prod:
       enabled: false
@@ -75,7 +75,7 @@ Mappings:
     prod:
       uri: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates
     staging:
-      uri: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates
+      uri: https://gisdata.seattle.gov/cosgis/rest/services/locators/AddressPoints/GeocodeServer/findAddressCandidates
   EsriAddressServiceAreaValidationUri:
     prod:
       uri: https://gisdata.seattle.gov/server/rest/services/COS/Seattle_City_Limits/MapServer/1/query
@@ -286,6 +286,12 @@ Resources:
               Value: Affordable Seattle
             - Name: COMMON_INTAKE_MORE_RESOURCES_LINK_HREF
               Value: https://www.affordableseattle.org
+            - Name: CIVIC_ENTITY_LOGO_WITH_NAME_URL
+              Value: https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-long-logo.png
+            - Name: CIVIC_ENTITY_SMALL_LOGO_URL
+              Value: https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png
+            - Name: FAVICON_URL
+              Value: https://seattle.gov/favicon.ico
           Cpu: 1024
           Memory: 8192
           PortMappings:
