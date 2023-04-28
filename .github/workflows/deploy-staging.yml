@@ -3,8 +3,8 @@ name: Seattle Staging Deploy
 on:
   workflow_dispatch:
     inputs:
-      enable_probers:
-        description: 'True to '
+      probers_enabled:
+        description: 'Runs probers when checked'
         default: true
         required: true
         type: boolean
@@ -43,7 +43,7 @@ jobs:
         run: bin/deploy -e staging -i civiform/civiform:latest
 
       - name: Run Prober tests
-        #if: ${{ false }}  # Temporarily Disable 
+        if: ${{ github.event.inputs.probers_enabled }}
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
