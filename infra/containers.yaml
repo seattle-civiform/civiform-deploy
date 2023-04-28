@@ -286,9 +286,9 @@ Resources:
               Value: Affordable Seattle
             - Name: COMMON_INTAKE_MORE_RESOURCES_LINK_HREF
               Value: https://www.affordableseattle.org
-            - Name: CIVIC_ENTITY_LOGO_WITH_NAME_URL
+            - Name: WHITELABEL_LOGO_WITH_NAME_URL
               Value: https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-long-logo.png
-            - Name: CIVIC_ENTITY_SMALL_LOGO_URL
+            - Name: WHITELABEL_SMALL_LOGO_URL
               Value: https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png
             - Name: FAVICON_URL
               Value: https://seattle.gov/favicon.ico
