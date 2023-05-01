@@ -43,7 +43,7 @@ jobs:
         run: bin/deploy -e staging -i civiform/civiform:latest
 
       - name: Run Prober tests
-        if: ${{ github.event.inputs.probers_enabled == 'true' }}
+        if: github.event.inputs == null || github.event.inputs.probers_enabled == 'true'
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
