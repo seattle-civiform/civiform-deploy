@@ -86,6 +86,11 @@ Mappings:
       enabled: true
     staging:
       enabled: true
+  BypassLoginLanguageScreens:
+    prod:
+      enabled: false
+    staging:
+      enabled: true      
 Parameters:
   Environment:
     Type: String
@@ -278,6 +283,8 @@ Resources:
               Value: 'CITYNAME'
             - Name: PROGRAM_READ_ONLY_VIEW_ENABLED
               Value: !FindInMap [ProgramReadOnlyViewEnabled, !Ref Environment, enabled]
+            - Name: BYPASS_LOGIN_LANGUAGE_SCREENS
+              Value: !FindInMap [BypassLoginLanguageScreens, !Ref Environment, enabled]
             - Name: PHONE_QUESTION_TYPE_ENABLED
               Value: !FindInMap [PhoneQuestionTypeEnabled, !Ref Environment, enabled]
             - Name: SUPPORT_EMAIL_ADDRESS
