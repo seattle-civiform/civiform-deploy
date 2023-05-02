@@ -14,22 +14,12 @@ concurrency:
 
 jobs:
   run_prober:
-    strategy:
-      max-parallel: 1
-      fail-fast: false
-      matrix:
-        shard_num: [1, 2, 3, 4]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Load image
-        run: |
-          docker load --input /tmp/civiform-browser-test.tar
-          docker image ls -a
-        
-      - name: Run Prober Tests (Chunk ${{ matrix.shard_num }} of ${{ strategy.job-total }})
+      - name: Run Prober Tests 
         env:
           TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
@@ -38,11 +28,4 @@ jobs:
           timeout_minutes: 30
           max_attempts: 1
           retry_wait_seconds: 15
-          command: bin/run-prober ${{ matrix.shard_num }}/${{ strategy.job-total }}
-          
-      - name: Upload test videos on failure
-        uses: actions/upload-artifact@v3
-        with:
-          name: tests videos
-          path: browser-test/tmp
-        if: failure()
+          command: bin/run-prober
