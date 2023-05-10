@@ -73,7 +73,7 @@ Mappings:
       enabled: true
   EsriFindAddressCandidatesUri:
     prod:
-      uri: https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates
+      uri: https://gisdata.seattle.gov/cosgis/rest/services/locators/AddressPoints/GeocodeServer/findAddressCandidates
     staging:
       uri: https://gisdata.seattle.gov/cosgis/rest/services/locators/AddressPoints/GeocodeServer/findAddressCandidates
   EsriAddressServiceAreaValidationUri:
