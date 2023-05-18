@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify Slack Start
-        uses: slackapi/slack-github-action@v1.23.0
+        uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: 'C03UXPUEXU4'
           slack-message: ":space-needle: Starting Seattle Staging Deploy. Probers enabled: ${{ github.event.inputs.probers_enabled }}"
@@ -56,7 +56,7 @@ jobs:
       
       - name: Notify Slack Complete
         if: always()
-        uses: slackapi/slack-github-action@v1.23.0
+        uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: 'C03UXPUEXU4'
           slack-message: ":space-needle: ${{ env.STATUS_ICON }} Seattle Staging Deploy for ${{ env.LATEST_SNAPSHOT_TAG }}: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ job.status }}>"
