@@ -41,22 +41,7 @@ Mappings:
       uri: https://login.seattle.gov/#/logout?appName=CIVIFORM
     staging:
       uri: https://qalogin.seattle.gov:12443/#/logout?appName=CIVIFORM_STAGE
-  PredicatesMultipleQuestionsEnabled:
-    prod:
-      enabled: true
-    staging:
-      enabled: true
-  ProgramEligibilityConditionsEnabled:
-    prod:
-      enabled: true
-    staging:
-      enabled: true
   PhoneQuestionTypeEnabled:
-    prod:
-      enabled: true
-    staging:
-      enabled: true
-  CiviformAdminReportingUiEnabled:
     prod:
       enabled: true
     staging:
@@ -251,8 +236,6 @@ Resources:
               Value: ''
             - Name: ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS
               Value: 'true'
-            - Name: CIVIFORM_APPLICATION_STATUS_TRACKING_ENABLED
-              Value: 'true'
             - Name: STAGING_ADMIN_LIST
               Value: 'civiForm.staging@seattle.gov'
             - Name: STAGING_TI_LIST
@@ -261,12 +244,6 @@ Resources:
               Value: 'civiForm.staging@seattle.gov'
             - Name: STAGING_HOSTNAME
               Value: 'civiformstage.seattle.gov'
-            - Name: PREDICATES_MULTIPLE_QUESTIONS_ENABLED
-              Value: !FindInMap [PredicatesMultipleQuestionsEnabled, !Ref Environment, enabled]
-            - Name: PROGRAM_ELIGIBILITY_CONDITIONS_ENABLED
-              Value: !FindInMap [ProgramEligibilityConditionsEnabled, !Ref Environment, enabled]
-            - Name: CIVIFORM_ADMIN_REPORTING_UI_ENABLED
-              Value: !FindInMap [CiviformAdminReportingUiEnabled, !Ref Environment, enabled]
             - Name: ESRI_ADDRESS_CORRECTION_ENABLED
               Value: !FindInMap [EsriAddressCorrectionEnabled, !Ref Environment, enabled]
             - Name: ESRI_FIND_ADDRESS_CANDIDATES_URL
