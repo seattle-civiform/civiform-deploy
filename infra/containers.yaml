@@ -26,6 +26,11 @@ Mappings:
       uri: https://idcs-3359adb31e35415e8c1729c5c8098c6d.identity.oraclecloud.com/.well-known/openid-configuration
     staging:
       uri: https://idcs-f582fefb879b4db5a88a370e8f2f6013.identity.oraclecloud.com/.well-known/openid-configuration
+AdfsDiscoveryUri:
+    prod:
+      uri: https://sts.seattle.gov/adfs/.well-known/openid-configuration
+    staging:
+      uri: https://login.microsoftonline.com/78e61e45-6beb-4009-8f99-359d8b54f41b/v2.0/.well-known/openid-configuration      
   FeatureFlagOverrides:
     prod:
       enabled: false
@@ -207,7 +212,7 @@ Resources:
             - Name: ADFS_SECRET
               Value: !Sub '{{resolve:secretsmanager:${Environment}-oidc-secrets:SecretString:ADFS_SECRET}}'
             - Name: ADFS_DISCOVERY_URI
-              Value: https://sts.seattle.gov/adfs/.well-known/openid-configuration
+              Value: !FindInMap [AdfsDiscoveryUri, !Ref Environment, uri]
             - Name: APPLICANT_REGISTER_URI
               Value: !FindInMap [Registration, !Ref Environment, uri]
             - Name: ADFS_GLOBAL_ADMIN_GROUP
