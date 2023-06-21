@@ -30,7 +30,17 @@ Mappings:
     prod:
       uri: https://sts.seattle.gov/adfs/.well-known/openid-configuration
     staging:
-      uri: https://login.microsoftonline.com/78e61e45-6beb-4009-8f99-359d8b54f41b/v2.0/.well-known/openid-configuration      
+      uri: https://login.microsoftonline.com/78e61e45-6beb-4009-8f99-359d8b54f41b/v2.0/.well-known/openid-configuration
+  AdfsAdditionalScopes:
+    prod:
+      value: allatclaims
+    staging:
+      value: ''
+  AdfsGroupsAttributeName:
+    prod:
+      value: group
+    staging:
+      value: groups      
   FeatureFlagOverrides:
     prod:
       enabled: false
@@ -281,6 +291,12 @@ Resources:
               Value: https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png
             - Name: FAVICON_URL
               Value: https://seattle.gov/favicon.ico
+
+
+            - Name: ADFS_ADDITIONAL_SCOPES
+              Value: !FindInMap [AdfsAdditionalScopes, !Ref Environment, value]
+            - Name: AD_GROUPS_ATTRIBUTE_NAME
+              Value: !FindInMap [AdfsGroupsAttributeName, !Ref Environment, value]
           Cpu: 1024
           Memory: 8192
           PortMappings:
