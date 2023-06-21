@@ -15,7 +15,7 @@ Mappings:
     prod:
       group: ad\ITD_CiviForm_Admins
     staging:
-      group: ad\ITD_CiviForm_Admins_Test
+      group: 5909e7f3-3f4c-4ad1-93e8-17e6ba6ab8a3
   Registration:
     prod:
       uri: https://login.seattle.gov/#/registration?appName=CiviForm
