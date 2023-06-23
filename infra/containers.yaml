@@ -291,8 +291,8 @@ Resources:
               Value: https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png
             - Name: FAVICON_URL
               Value: https://seattle.gov/favicon.ico
-
-
+            - Name: APPLICANT_PORTAL_NAME
+              Value: Seattle
             - Name: ADFS_ADDITIONAL_SCOPES
               Value: !FindInMap [AdfsAdditionalScopes, !Ref Environment, value]
             - Name: AD_GROUPS_ATTRIBUTE_NAME
