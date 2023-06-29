@@ -297,6 +297,8 @@ Resources:
               Value: !FindInMap [AdfsAdditionalScopes, !Ref Environment, value]
             - Name: AD_GROUPS_ATTRIBUTE_NAME
               Value: !FindInMap [AdfsGroupsAttributeName, !Ref Environment, value]
+            - Name: ADMIN_SETTINGS_PANEL_ENABLED
+              Value: true
           Cpu: 1024
           Memory: 8192
           PortMappings:
