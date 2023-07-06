@@ -90,7 +90,7 @@ Mappings:
     prod:
       enabled: true
     staging:
-      enabled: true      
+      enabled: true
 Parameters:
   Environment:
     Type: String
