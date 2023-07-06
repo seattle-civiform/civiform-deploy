@@ -13,7 +13,7 @@ Mappings:
       sender: civiForm.staging@seattle.gov
   AdminGroup:
     prod:
-      group: ad\ITD_CiviForm_Admins
+      group: f8c8e6c8-a5d7-4476-91bd-7f1691d16625
     staging:
       group: 5909e7f3-3f4c-4ad1-93e8-17e6ba6ab8a3
   Registration:
@@ -28,19 +28,19 @@ Mappings:
       uri: https://idcs-f582fefb879b4db5a88a370e8f2f6013.identity.oraclecloud.com/.well-known/openid-configuration
   AdfsDiscoveryUri:
     prod:
-      uri: https://sts.seattle.gov/adfs/.well-known/openid-configuration
+      uri: https://login.microsoftonline.com/78e61e45-6beb-4009-8f99-359d8b54f41b/v2.0/.well-known/openid-configuration
     staging:
       uri: https://login.microsoftonline.com/78e61e45-6beb-4009-8f99-359d8b54f41b/v2.0/.well-known/openid-configuration
   AdfsAdditionalScopes:
     prod:
-      value: allatclaims
+      value: ''
     staging:
       value: ''
   AdfsGroupsAttributeName:
     prod:
-      value: group
+      value: groups
     staging:
-      value: groups      
+      value: groups
   FeatureFlagOverrides:
     prod:
       enabled: false
