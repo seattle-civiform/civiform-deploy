@@ -299,6 +299,22 @@ Resources:
               Value: !FindInMap [AdfsGroupsAttributeName, !Ref Environment, value]
             - Name: ADMIN_SETTINGS_PANEL_ENABLED
               Value: 'true'
+            - Name: CIVIFORM_SUPPORTED_LANGUAGES.0
+              Value: "en-US"
+            - Name: CIVIFORM_SUPPORTED_LANGUAGES.1
+              Value: "am"
+            - Name: CIVIFORM_SUPPORTED_LANGUAGES.2
+              Value: "zh-TW"
+            - Name: CIVIFORM_SUPPORTED_LANGUAGES.3
+              Value: "ko"
+            - Name: CIVIFORM_SUPPORTED_LANGUAGES.4
+              Value: "so"
+            - Name: CIVIFORM_SUPPORTED_LANGUAGES.5
+              Value: "es-US"
+            - Name: CIVIFORM_SUPPORTED_LANGUAGES.6
+              Value: "tl"
+            - Name: CIVIFORM_SUPPORTED_LANGUAGES.7
+              Value: "vi"
           Cpu: 1024
           Memory: 8192
           PortMappings:
