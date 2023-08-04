@@ -56,11 +56,6 @@ Mappings:
       uri: https://login.seattle.gov/#/logout?appName=CIVIFORM
     staging:
       uri: https://qalogin.seattle.gov:12443/#/logout?appName=CIVIFORM_STAGE
-  PhoneQuestionTypeEnabled:
-    prod:
-      enabled: true
-    staging:
-      enabled: true
   EsriAddressCorrectionEnabled:
     prod:
       enabled: true
@@ -277,8 +272,6 @@ Resources:
               Value: !FindInMap [ProgramReadOnlyViewEnabled, !Ref Environment, enabled]
             - Name: BYPASS_LOGIN_LANGUAGE_SCREENS
               Value: !FindInMap [BypassLoginLanguageScreens, !Ref Environment, enabled]
-            - Name: PHONE_QUESTION_TYPE_ENABLED
-              Value: !FindInMap [PhoneQuestionTypeEnabled, !Ref Environment, enabled]
             - Name: SUPPORT_EMAIL_ADDRESS
               Value: CiviForm@seattle.gov
             - Name: COMMON_INTAKE_MORE_RESOURCES_LINK_TEXT
