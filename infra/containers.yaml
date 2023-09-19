@@ -202,7 +202,7 @@ Resources:
               Value: !Sub '{{resolve:secretsmanager:${SecretKey}}}'
             - Name: AWS_REGION
               Value: !Sub '${AWS::Region}'
-            - Name: AWS_SES_SENDER
+            - Name: SENDER_EMAIL_ADDRESS
               Value: !FindInMap [Notifications, !Ref Environment, sender]
             - Name: AWS_S3_BUCKET_NAME
               Value: !Ref 'S3BucketName'
@@ -220,7 +220,7 @@ Resources:
               Value: !FindInMap [AdfsDiscoveryUri, !Ref Environment, uri]
             - Name: APPLICANT_REGISTER_URI
               Value: !FindInMap [Registration, !Ref Environment, uri]
-            - Name: ADFS_GLOBAL_ADMIN_GROUP
+            - Name: ADFS_ADMIN_GROUP
               Value: !FindInMap [AdminGroup, !Ref Environment, group]
             - Name: WHITELABEL_CIVIC_ENTITY_SHORT_NAME
               Value: 'Seattle'
@@ -246,11 +246,11 @@ Resources:
               Value: ''
             - Name: ALLOW_CIVIFORM_ADMIN_ACCESS_PROGRAMS
               Value: 'true'
-            - Name: STAGING_ADMIN_LIST
+            - Name: STAGING_PROGRAM_ADMIN_NOTIFICATION_MAILING_LIST
               Value: 'civiForm.staging@seattle.gov'
-            - Name: STAGING_TI_LIST
+            - Name: STAGING_TI_NOTIFICATION_MAILING_LIST
               Value: 'civiForm.staging@seattle.gov'
-            - Name: STAGING_APPLICANT_LIST
+            - Name: STAGING_APPLICANT_NOTIFICATION_MAILING_LIST
               Value: 'civiForm.staging@seattle.gov'
             - Name: STAGING_HOSTNAME
               Value: 'civiformstage.seattle.gov'
@@ -280,7 +280,7 @@ Resources:
               Value: https://www.affordableseattle.org
             - Name: WHITELABEL_LOGO_WITH_NAME_URL
               Value: https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-long-logo.png
-            - Name: WHITELABEL_SMALL_LOGO_URL
+            - Name: CIVIC_ENTITY_SMALL_LOGO_URL
               Value: https://raw.githubusercontent.com/seattle-civiform/civiform-deploy-tf/main/logos/civiform-small-logo.png
             - Name: FAVICON_URL
               Value: https://seattle.gov/favicon.ico
