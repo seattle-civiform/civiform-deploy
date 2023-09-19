@@ -86,11 +86,16 @@ Mappings:
       enabled: true
     staging:
       enabled: true
+  StagingAddNoIndexMetaTag:
+    prod:
+      enabled: false
+    staging:
+      enabled: true
 Parameters:
   Environment:
     Type: String
-    AllowedValues: ["staging", "prod"]
-    Description: "Staging or prod environment"
+    AllowedValues: ['staging', 'prod']
+    Description: 'Staging or prod environment'
   S3TaskRole:
     Description: The task role for the containers.
     Type: String
@@ -142,7 +147,7 @@ Resources:
   ecscluster:
     Type: AWS::ECS::Cluster
     Properties:
-      ClusterName: !Join ["-", [!Ref Environment, "civiform-fargate-cluster"]]
+      ClusterName: !Join ['-', [!Ref Environment, 'civiform-fargate-cluster']]
       CapacityProviders:
         - FARGATE
       DefaultCapacityProviderStrategy:
@@ -155,7 +160,7 @@ Resources:
       DesiredCount: 2
       TaskDefinition: !Ref 'ecstaskdef'
       LoadBalancers:
-        - ContainerName: !Join ["-", [!Ref Environment, "civiform-container"]]
+        - ContainerName: !Join ['-', [!Ref Environment, 'civiform-container']]
           ContainerPort: 9000
           TargetGroupArn: !Ref 'LBTargetName'
       LaunchType: FARGATE
@@ -170,7 +175,7 @@ Resources:
   loggroup:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: !Join [".", [!Ref Environment, "civiform.lg"]]
+      LogGroupName: !Join ['.', [!Ref Environment, 'civiform.lg']]
       RetentionInDays: 90
   ecstaskdef:
     Type: AWS::ECS::TaskDefinition
@@ -183,7 +188,7 @@ Resources:
       Cpu: 1024
       Memory: 8192
       ContainerDefinitions:
-        - Name: !Join ["-", [!Ref Environment, "civiform-container"]]
+        - Name: !Join ['-', [!Ref Environment, 'civiform-container']]
           Image: !FindInMap [Images, !Ref Environment, image]
           Environment:
             - Name: DB_JDBC_STRING
@@ -227,9 +232,9 @@ Resources:
             - Name: WHITELABEL_CIVIC_ENTITY_FULL_NAME
               Value: 'City of Seattle'
             - Name: BASE_URL
-              Value: !Sub "https://${DomainName}"
+              Value: !Sub 'https://${DomainName}'
             - Name: MEASUREMENT_ID
-              Value: !Sub "${MeasurementId}"
+              Value: !Sub '${MeasurementId}'
             - Name: CIVIFORM_API_SECRET_SALT
               Value: !Sub '{{resolve:secretsmanager:${Environment}-api-secret-salt:SecretString:CIVIFORM_API_SECRET_SALT}}'
             - Name: DATABASE_APPLY_DESTRUCTIVE_CHANGES
@@ -292,22 +297,24 @@ Resources:
               Value: !FindInMap [AdfsGroupsAttributeName, !Ref Environment, value]
             - Name: ADMIN_SETTINGS_PANEL_ENABLED
               Value: 'true'
+            - Name: STAGING_ADD_NOINDEX_META_TAG
+              Value: !FindInMap [StagingAddNoIndexMetaTag, !Ref Environment, enabled]
             - Name: CIVIFORM_SUPPORTED_LANGUAGES.0
-              Value: "en-US"
+              Value: 'en-US'
             - Name: CIVIFORM_SUPPORTED_LANGUAGES.1
-              Value: "am"
+              Value: 'am'
             - Name: CIVIFORM_SUPPORTED_LANGUAGES.2
-              Value: "zh-TW"
+              Value: 'zh-TW'
             - Name: CIVIFORM_SUPPORTED_LANGUAGES.3
-              Value: "ko"
+              Value: 'ko'
             - Name: CIVIFORM_SUPPORTED_LANGUAGES.4
-              Value: "so"
+              Value: 'so'
             - Name: CIVIFORM_SUPPORTED_LANGUAGES.5
-              Value: "es-US"
+              Value: 'es-US'
             - Name: CIVIFORM_SUPPORTED_LANGUAGES.6
-              Value: "tl"
+              Value: 'tl'
             - Name: CIVIFORM_SUPPORTED_LANGUAGES.7
-              Value: "vi"
+              Value: 'vi'
           Cpu: 1024
           Memory: 8192
           PortMappings:
