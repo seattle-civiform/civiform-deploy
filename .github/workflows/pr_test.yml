@@ -32,7 +32,7 @@ jobs:
 
       - name: Checkout
         if: contains(toJSON(steps.file_changes.outputs.all_changed_files), 'infra/')
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 51
 
