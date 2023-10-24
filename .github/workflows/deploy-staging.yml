@@ -31,7 +31,7 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: resolve latest snapshot tag
         run: source bin/resolve-latest-snapshot-tag
