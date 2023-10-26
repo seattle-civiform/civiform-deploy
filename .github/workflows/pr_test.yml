@@ -13,7 +13,7 @@ jobs:
       pull-requests: write # to allow for mshick/add-pr-comment to add comments
     steps:
       - id: file_changes
-        uses: tj-actions/changed-files@v39
+        uses: tj-actions/changed-files@v40
         with:
           json: 'true'
           
