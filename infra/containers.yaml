@@ -81,11 +81,6 @@ Mappings:
       enabled: true
     staging:
       enabled: true
-  ApplicationExportable:
-    prod:
-      enabled: false
-    staging:
-      enabled: true
   BypassLoginLanguageScreens:
     prod:
       enabled: true
@@ -281,7 +276,7 @@ Resources:
             - Name: PROGRAM_READ_ONLY_VIEW_ENABLED
               Value: !FindInMap [ProgramReadOnlyViewEnabled, !Ref Environment, enabled]
             - Name: APPLICATION_EXPORTABLE
-              Value: !FindInMap [ ApplicationExportable, !Ref Environment, enabled ]
+              Value: 'true'
             - Name: BYPASS_LOGIN_LANGUAGE_SCREENS
               Value: !FindInMap [BypassLoginLanguageScreens, !Ref Environment, enabled]
             - Name: SUPPORT_EMAIL_ADDRESS
