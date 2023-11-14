@@ -75,6 +75,11 @@ case "${ENVIRONMENT_NAME}" in
       ;;
 esac
 
+if [[ "${ENVIRONMENT_NAME}" != "prod" ]]; then
+    echo "This script only allows for prod deployments now."
+    exit 1
+fi
+
 readonly ENVIRONMENT_NAME
 readonly IMAGE_NAME
 readonly STACK_NAME
