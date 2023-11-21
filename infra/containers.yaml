@@ -226,6 +226,8 @@ Resources:
               Value: 'tl'
             - Name: CIVIFORM_SUPPORTED_LANGUAGES.7
               Value: 'vi'
+            - Name: CLIENT_IP_TYPE
+              Value: 'FORWARDED'
           Cpu: 1024
           Memory: 8192
           PortMappings:
