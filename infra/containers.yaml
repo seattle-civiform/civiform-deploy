@@ -228,6 +228,12 @@ Resources:
               Value: 'vi'
             - Name: CLIENT_IP_TYPE
               Value: 'FORWARDED'
+            - Name: VERSION_CACHE_ENABLED
+              Value: 'true'
+            - Name: PROGRAM_CACHE_ENABLED
+              Value: 'true'
+            - Name: QUESTION_CACHE_ENABLED
+              Value: 'true'
           Cpu: 1024
           Memory: 8192
           PortMappings:
